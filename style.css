@@ -10,6 +10,15 @@ body{
 .img-responsive {
     width: 100%;
 }
+#thumbnail_container {
+    justify-content: center;
+}
+.thumbnail_img.col {
+    width: 75%;
+    padding: 0px;
+    padding-top: 10px;
+}
+
 @media only screen and (max-width: 767px) {
     #card_image {
         width: 50%;
