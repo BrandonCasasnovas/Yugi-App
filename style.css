@@ -1,0 +1,132 @@
+body{ 
+}
+.header_container {
+    display: block;
+    text-align: center;
+}
+.header_img{
+    width: 35%;
+}
+.img-responsive {
+    width: 100%;
+}
+@media only screen and (max-width: 767px) {
+    #card_image {
+        width: 50%;
+    }
+    #img_container{
+        text-align: center;
+    }
+  }
+.searchBox{
+    border: black solid 1px;
+    font-size: 16px;
+    width: 37%;
+    padding: 2px;
+    text-transform: capitalize;
+}
+.search_container{
+    text-align: center;
+    display: block;
+    padding-top: 25px;
+    width: 100%;
+}
+.search_name_container {
+    padding-bottom: 10px;
+}
+
+/* Autocomplete dropdown styling starts here */
+.ui-autocomplete { position: absolute; cursor: default; background:#CCC }   
+
+/* workarounds */
+html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+.ui-menu {
+    list-style:none;
+    padding: 2px;
+    margin: 0;
+    display:block;
+    float: left;
+}
+.ui-menu .ui-menu {
+    margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+    margin:0;
+    padding: 0;
+    zoom: 1;
+    float: left;
+    clear: left;
+    width: 100%;
+    cursor:pointer;
+}
+.ui-menu .ui-menu-item a {
+    text-decoration:none;
+    display:block;
+    padding:.2em .4em;
+    line-height:1.5;
+    zoom:1;
+}
+.ui-menu-item {
+    background-color: white;
+    border: 1px solid black;
+    border-top: none;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+    font-weight: normal;
+    margin: -1px;
+}
+.ui-menu-item:hover{
+    background-color:grey;
+}
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+/* Autocomplete dropdown styling ends here */
+
+input[type=submit]{
+  font-size: 16px;
+  background-color: #ff0b0b;
+  border: none;
+  color: white;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.searchButton {
+  background-position: center;
+  transition: background 0.3s;
+  box-shadow: 0 1px 3px 2px grey;
+}
+.searchButton:active {
+  background-color: black;
+  background-size: 100%;
+  transition: background 0s;
+}
+
+/* card information block styling starts here */
+#name_container{
+    text-align: center;
+    padding-top: 30px;
+}
+h {
+    font-family: 'Andada', serif;
+    font-size: larger;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0px 3px 4px  grey;
+    border: solid #000000d6 2px;
+}
+#article_container {
+    padding-top: 20px;
+}
+
+/* #article_container {
+    text-align: center;
+    margin-top: 1.3%;
+} */
+#info_container {
+    padding-bottom: 25px;
+}
