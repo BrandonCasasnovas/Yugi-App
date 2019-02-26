@@ -85,72 +85,77 @@ const generateCardBlock = () => {
         
         let cardNameContainer = document.createElement('div');
         cardNameContainer.setAttribute("id", "name_container");
-        cardNameContainer.setAttribute("class", "row");
+        cardNameContainer.setAttribute("class", "col");
         cardBlock.prepend(cardNameContainer);
         
+        let articleContainer = document.createElement('div');
+        articleContainer.setAttribute("id", "article_container");
+        articleContainer.setAttribute("class", "row");
+        cardBlock.append(articleContainer);
+
         let cardImage = document.createElement('div');
         cardImage.setAttribute("id", "img_container");
         cardImage.setAttribute("class", "col-md-4");
-        cardBlock.append(cardImage);
+        articleContainer.append(cardImage);
         
         let cardText = document.createElement('div');
         cardText.setAttribute("id", "text_container");
         cardText.setAttribute("class", "col-md-8");
-        cardBlock.append(cardText);
+        articleContainer.append(cardText);
 
-        let cardId = document.createElement('div');
+        let cardId = document.createElement('li');
         cardId.setAttribute("id", "card_id");
-        cardId.setAttribute("class", "row");
+        cardId.setAttribute("class", "text_node");
         cardText.append(cardId);
 
-        let attribute = document.createElement('div');
+        let attribute = document.createElement('li');
         attribute.setAttribute("id", "attribute");
-        attribute.setAttribute("class", "row")
+        attribute.setAttribute("class", "text_node")
         cardText.append(attribute);
 
-        let level = document.createElement('div');
+        let level = document.createElement('li');
         level.setAttribute("id", "level");
-        level.setAttribute("class", "row");
+        level.setAttribute("class", "text_node");
         cardText.append(level);
 
-        let atk = document.createElement('div');
+        let atk = document.createElement('li');
         atk.setAttribute("id", "attack");
-        atk.setAttribute("class", "row");
+        atk.setAttribute("class", "text_node");
         cardText.append(atk);
         
-        let def = document.createElement('div');
+        let def = document.createElement('li');
         def.setAttribute("id", "defense");
-        def.setAttribute("class", "row");
+        def.setAttribute("class", "text_node");
         cardText.append(def);
         
-        let cardType = document.createElement('div');
+        let cardType = document.createElement('li');
         cardType.setAttribute("id", "cardType");
-        cardType.setAttribute("class", "row");
+        cardType.setAttribute("class", "text_node");
         cardText.append(cardType);
         
-        let monsterType = document.createElement('div');
+        let monsterType = document.createElement('li');
         monsterType.setAttribute("id", "monsterType");
-        monsterType.setAttribute("class", "row");
+        monsterType.setAttribute("class", "text_node");
         cardText.append(monsterType);
         
-        let archetype = document.createElement('div');
+        let archetype = document.createElement('li');
         archetype.setAttribute("id", "archetype");
-        archetype.setAttribute("class", "row");
+        archetype.setAttribute("class", "text_node");
         cardText.append(archetype);
         
-        let banTcg = document.createElement('div');
+        let banTcg = document.createElement('li');
         banTcg.setAttribute("id", "tcg_status");
-        banTcg.setAttribute("class", "row");
+        banTcg.setAttribute("class", "text_node");
         cardText.append(banTcg);
         
-        let banOcg = document.createElement('div');
+        let banOcg = document.createElement('li');
         banOcg.setAttribute("id", "ocg_status");
-        banOcg.setAttribute("class", "row");
+        banOcg.setAttribute("class", "text_node");
         cardText.append(banOcg);
         
-        let description = document.createElement('div');
+        let description = document.createElement('li');
         description.setAttribute("id", "description");
-        description.setAttribute("class", "row");
+        description.setAttribute("class", "text_node");
         cardText.append(description);
     
         let cardNameValue = document.getElementById("card_name_input").value;
@@ -198,7 +203,7 @@ const generateThumnail = () => {
     // for every multi-printed card, create a div to hold the thumbnail image
     thumbnailIDs.forEach(function(el){
         let newThumbnail = document.createElement('div');
-        newThumbnail.setAttribute("data-id", el)
+        newThumbnail.setAttribute("data-card_id", el)
         newThumbnail.setAttribute("class", 'thumbnail')
         newThumbnail.innerHTML += `<img class='thumbnail_img col' src=https://storage.googleapis.com/ygoprodeck.com/pics_small/${el}.jpg >`
         thumbnail_container.appendChild(newThumbnail);
@@ -251,6 +256,8 @@ $(document).ready(function () {
         clearContent();
 
         let cardNameValue = document.getElementById("card_name_input").value;
+        
+
 
         if (duplicatePrints.includes(cardNameValue) == true){
             generateThumnail();
@@ -259,3 +266,4 @@ $(document).ready(function () {
         }
     });
 });
+
