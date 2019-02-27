@@ -288,4 +288,4 @@ $(document).ready(function () {
 });
 
 
-// Debug 'Dark Magician Search' also comment newly added code on 2/26 and 2/27
+// Debug 'Dark Magician', 'Foolish Burial', and 'Monster Reborn' search also comment newly added code on 2/26 and 2/27
