@@ -286,3 +286,6 @@ $(document).ready(function () {
     });
 
 });
+
+
+// Debug 'Dark Magician Search' also comment newly added code on 2/26 and 2/27
