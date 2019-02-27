@@ -5,7 +5,8 @@ body{
     text-align: center;
 }
 .header_img{
-    width: 35%;
+    padding-top: 15px;
+    width: 55%;
 }
 .img-responsive {
     width: 100%;
@@ -17,6 +18,9 @@ body{
     width: 75%;
     padding: 0px;
     padding-top: 10px;
+}
+.thumbnail_img {
+    cursor: pointer;
 }
 
 @media only screen and (max-width: 767px) {

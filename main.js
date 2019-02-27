@@ -9,7 +9,7 @@ let duplicatePrints;
 let thumbnailIDs = [];
 
 
-const apiCall = () => {
+const cardInfoApi = () => {
 	// api call to YGOpro's Yugioh card database
     let requestURL = 'https://db.ygoprodeck.com/api/v2/cardinfo.php';
     let request = new XMLHttpRequest();
@@ -72,9 +72,8 @@ window.onload = function () {
     });
 }
 
-const generateCardBlock = () => {
-    
-    
+const generateCardBlock = (cardParams) => {
+ 
     let infoContainer = document.getElementById('info_container');
 
     if (document.getElementById('cardBlock_container') == null){
@@ -158,10 +157,10 @@ const generateCardBlock = () => {
         description.setAttribute("class", "text_node");
         cardText.append(description);
     
-        let cardNameValue = document.getElementById("card_name_input").value;
+        // let cardNameValue = document.getElementById("card_name_input").value;
 
         for (let i = 0; i < state.length; i++) {
-            if (cardNameValue == state[i].name) {
+            if (cardParams == state[i].name || cardParams == state[i].id ) {
                 cardNameContainer.innerHTML += "<h>"+state[i].name+"</h>";
                 cardImage.innerHTML += "<img id='card_image' class='img-responsive' src=https://ygoprodeck.com/pics/"+state[i].id+".jpg >"
                 cardId.innerHTML += "ID: " + state[i].id;
@@ -199,7 +198,6 @@ const generateThumnail = () => {
         thumbnailIDs.push(state[i].id)
     }
 }
-
     // for every multi-printed card, create a div to hold the thumbnail image
     thumbnailIDs.forEach(function(el){
         let newThumbnail = document.createElement('div');
@@ -208,6 +206,30 @@ const generateThumnail = () => {
         newThumbnail.innerHTML += `<img class='thumbnail_img col' src=https://storage.googleapis.com/ygoprodeck.com/pics_small/${el}.jpg >`
         thumbnail_container.appendChild(newThumbnail);
     });
+}
+
+const doThumbnailsExist = () => {
+    let thumbnails = document.getElementsByClassName('thumbnail_img').length;
+    if (thumbnails == 0){
+        return false;
+    } else return true;
+}
+
+const clickableThumbnails = () => {
+    let thumbnailsExist = doThumbnailsExist();
+
+    if (thumbnailsExist = true) {
+        let thumbnails = document.querySelectorAll('.thumbnail_img');
+        for (let i = 0; i < thumbnails.length; ++i) {
+            thumbnails[i].addEventListener('click', function () {
+                var card_id = this.parentElement.getAttribute('data-card_id');
+                clearContent();
+                console.log(card_id);
+                generateCardBlock(card_id);
+            });
+        
+        }
+    }
 }
 
 const clearContent = () => {
@@ -246,24 +268,21 @@ const storeDuplicates = (arr) =>  {
     return duplicates;
   }
 
-// program logic begins here
-apiCall();
+////////////////////////// program logic begins here //////////////////////////
+cardInfoApi();
 
 $(document).ready(function () {
     
     document.getElementById("name_search").addEventListener("click", function () {
- 
         clearContent();
-
         let cardNameValue = document.getElementById("card_name_input").value;
         
-
-
         if (duplicatePrints.includes(cardNameValue) == true){
             generateThumnail();
+            clickableThumbnails();
         } else {
-            generateCardBlock();
+            generateCardBlock(cardNameValue);
         }
     });
-});
 
+});
