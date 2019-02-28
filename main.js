@@ -72,9 +72,10 @@ window.onload = function () {
     });
 }
 
+// this function generates the DOM elements on the page and fills them with appropriate api data based on user input
 const generateCardBlock = (cardParams) => {
  
-    let infoContainer = document.getElementById('info_container');
+    let infoContainer = document.getElementById('info_container'); //define parent element all generated DOM elements will be apended to
 
     if (document.getElementById('cardBlock_container') == null){
         let cardBlock = document.createElement('div');
@@ -96,7 +97,14 @@ const generateCardBlock = (cardParams) => {
         cardImage.setAttribute("id", "img_container");
         cardImage.setAttribute("class", "col-md-4");
         articleContainer.append(cardImage);
-        
+
+        let clickZoom = document.createElement('span');
+        clickZoom.setAttribute("id", "click_to_zoom");
+        clickZoom.setAttribute("class", "row");
+        clickZoom.textContent = "Click and hold to zoom";
+        cardImage.append(clickZoom);
+
+
         let cardText = document.createElement('div');
         cardText.setAttribute("id", "text_container");
         cardText.setAttribute("class", "col-md-8");
