@@ -90,7 +90,7 @@ const generateCardBlock = (cardParams) => {
         let articleContainer = document.createElement('div');
         articleContainer.setAttribute("id", "article_container");
         articleContainer.setAttribute("class", "row");
-        cardBlock.append(articleContainer);
+        infoContainer.append(articleContainer);
 
         let cardImage = document.createElement('div');
         cardImage.setAttribute("id", "img_container");
