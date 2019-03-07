@@ -85,7 +85,7 @@ body {
 html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
 .ui-menu {
     list-style:none;
-    padding: 2px;
+    padding-left: 1px;
     margin: 0;
     display:block;
     float: left;
@@ -93,22 +93,7 @@ html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% i
 .ui-menu .ui-menu {
     margin-top: -3px;
 }
-.ui-menu .ui-menu-item {
-    margin:0;
-    padding: 0;
-    zoom: 1;
-    float: left;
-    clear: left;
-    width: 100%;
-    cursor:pointer;
-}
-.ui-menu .ui-menu-item a {
-    text-decoration:none;
-    display:block;
-    padding:.2em .4em;
-    line-height:1.5;
-    zoom:1;
-}
+
 .ui-menu-item {
     background-color: white;
     border: 1px solid black;
@@ -119,12 +104,16 @@ html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% i
     font-weight: normal;
     margin: -1px;
 }
-.ui-menu-item:hover{
-    background-color:grey;
+.ui-menu .ui-menu-item-wrapper:hover, .ui-menu .ui-menu-item-wrapper.ui-state-active {
+    color: #303030;
+    background-color: grey;
+    background-image: linear-gradient(to bottom right, #8a8a8a, #e7e7e7 );
+    
 }
 .ui-helper-hidden-accessible {
     display: none;
 }
+
 
 /* Autocomplete dropdown styling ends here */
 
@@ -147,6 +136,16 @@ input[type=submit]{
   background-size: 100%;
   transition: background 0s;
 }
+
+.block {
+    opacity: 1;
+    animation: fade 1.5s;
+}
+@keyframes fade {
+  0% { opacity: 0 }
+  100% { opacity: 1 }
+}
+
 #card_image {
     transition: -webkit-transform 0.25s ease;
     transition: transform 0.25s ease;
