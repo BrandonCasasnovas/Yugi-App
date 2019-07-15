@@ -181,15 +181,30 @@ const generateCardBlock = (cardParams) => {
                     cardNameContainer.innerHTML += "<h>" + state[i].name + "</h>";
                     cardImage.innerHTML += "<img id='card_image' class='img-responsive' src=https://ygoprodeck.com/pics/" + state[i].id + ".jpg >"
                     cardId.innerHTML += "ID: " + state[i].id;
-                    attribute.innerHTML += "Attribute: " + state[i].attribute;
-                    level.innerHTML += "Level: " + state[i].level;
-                    atk.innerHTML += "Attack: " + state[i].atk;
-                    def.innerHTML += "Defense :" + state[i].def;
+
+                    // Applies "N/A" if spell or trap card for the "attribute" field"
+                    if (state[i].type == 'Trap Card' || state[i].type =='Spell Card'){
+                        attribute.innerHTML += "Attribute: " + "N/A";   
+                    } else{
+                        attribute.innerHTML += "Attribute: " + state[i].attribute;
+                    }
+                    
+                    // Dynamically inserts 'Rank' or 'Level' if an xyz monster or normal monster 
+                    if (state[i].type == 'XYZ Monster'){
+                        level.innerHTML += "Rank: " + (state[i].level ? state[i].level : "N/A");  
+                    } else if (state[i].type == 'Trap Card' || state[i].type=='Spell Card') {
+                        level.innerHTML += "Level: " + "N/A";
+                    } else{
+                        level.innerHTML += "Level: " + (state[i].level ? state[i].level : "N/A");
+                    }
+
+                    atk.innerHTML += "Attack: " + (state[i].atk ? state[i].atk : "N/A");
+                    def.innerHTML += "Defense : " + (state[i].def ? state[i].def : "N/A");
                     cardType.innerHTML += "Card Type: " + state[i].type;
                     monsterType.innerHTML += "Monster Type: " + state[i].race;
-                    archetype.innerHTML += "Archetype: " + state[i].archetype;
-                    banTcg.innerHTML += "TCG Ban Status: " + state[i].ban_tcg;
-                    banOcg.innerHTML += "OCG Ban Status: " + state[i].ban_ocg;
+                    archetype.innerHTML += "Archetype: " + (state[i].archetype ? state[i].archetype : "N/A");
+                    banTcg.innerHTML += "TCG Ban Status: " + (state[i].ban_tcg ? state[i].ban_tcg : "N/A")
+                    banOcg.innerHTML += "OCG Ban Status: " + (state[i].ban_ocg ? state[i].ban_ocg : "N/A")
                     // If the card is a pendulum type, it splits the two effects into two seperate fields, if not - it just places the the card description in the default description element
                     if (effects.length > 1){
                         pendulumEffect.innerHTML += effects[0];
@@ -227,7 +242,7 @@ const generateThumnail = () => {
     thumbnailIDs.forEach(function(el){
         let newThumbnail = document.createElement('div');
         newThumbnail.setAttribute("data-card_id", el)
-        newThumbnail.setAttribute("class", 'thumbnail')
+        newThumbnail.setAttribute("class", 'thumbnail')  
         newThumbnail.innerHTML += `<img class='thumbnail_img col' src=https://storage.googleapis.com/ygoprodeck.com/pics_small/${el}.jpg >`
         thumbnail_container.appendChild(newThumbnail);
     });
