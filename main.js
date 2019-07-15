@@ -162,14 +162,21 @@ const generateCardBlock = (cardParams) => {
             banOcg.setAttribute("class", "text_node");
             cardText.append(banOcg);
 
+            let pendulumEffect = document.createElement('li');
+            pendulumEffect.setAttribute("id", "pendulumEffect");
+            pendulumEffect.setAttribute("class", "text_node");
+            cardText.append(pendulumEffect);
+
             let description = document.createElement('li');
             description.setAttribute("id", "description");
             description.setAttribute("class", "text_node");
             cardText.append(description);
 
-            
+                      
             for (let i = 0; i < state.length; i++) {
                 if (cardParams == state[i].name || cardParams == state[i].id) {
+                    let effects = state[i].desc.split('----------------------------------------');
+                    console.log(effects[0]);
                     cardNameContainer.innerHTML += "<h>" + state[i].name + "</h>";
                     cardImage.innerHTML += "<img id='card_image' class='img-responsive' src=https://ygoprodeck.com/pics/" + state[i].id + ".jpg >"
                     cardId.innerHTML += "ID: " + state[i].id;
@@ -182,7 +189,13 @@ const generateCardBlock = (cardParams) => {
                     archetype.innerHTML += "Archetype: " + state[i].archetype;
                     banTcg.innerHTML += "TCG Ban Status: " + state[i].ban_tcg;
                     banOcg.innerHTML += "OCG Ban Status: " + state[i].ban_ocg;
-                    description.innerHTML += "Description: " + state[i].desc;
+                    // If the card is a pendulum type, it splits the two effects into two seperate fields, if not - it just places the the card description in the default description element
+                    if (effects.length > 1){
+                        pendulumEffect.innerHTML += effects[0];
+                        description.innerHTML += effects[1];
+                    } else if (effects.length == 1){
+                        description.innerHTML += "Description: " + effects[0];
+                    }
                     
                 }
             }
