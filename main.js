@@ -23,7 +23,7 @@ const cardInfoApi = () => {
         // Process our return data
             if (request.status >= 200 && request.status < 300) {
                 // This will run when the request is successful
-                console.log('success!', request);
+                // console.log('success!', request);
                 // store the response in global a variable for later manipulation
                 state = request.response[0];
                 nameIdGeneration();
@@ -51,7 +51,7 @@ const removeDuplicates = (arr) =>{
         if(finalArray.indexOf(arr[i]) == -1){
             finalArray.push(arr[i])
         }
-        console.log('stuff added');
+        // console.log('stuff added');
     }
     return finalArray;
 }
@@ -174,9 +174,10 @@ const generateCardBlock = (cardParams) => {
 
                       
             for (let i = 0; i < state.length; i++) {
+                // this checks the searched card's params and pipes the appropriate data into the their respective DOM created fields
                 if (cardParams == state[i].name || cardParams == state[i].id) {
                     let effects = state[i].desc.split('----------------------------------------');
-                    console.log(effects[0]);
+                    // console.log(effects[0]);
                     cardNameContainer.innerHTML += "<h>" + state[i].name + "</h>";
                     cardImage.innerHTML += "<img id='card_image' class='img-responsive' src=https://ygoprodeck.com/pics/" + state[i].id + ".jpg >"
                     cardId.innerHTML += "ID: " + state[i].id;
@@ -248,7 +249,7 @@ const clickableThumbnails = () => {
             thumbnails[i].addEventListener('click', function () {
                 var card_id = this.parentElement.getAttribute('data-card_id');
                 clearContent();
-                console.log(card_id);
+                // console.log(card_id);
                 generateCardBlock(card_id);
             });
         
@@ -265,7 +266,7 @@ const clearContent = () => {
     // if element exists, clear all contents from the parent element 'info_container'
     if (thumbnailContainer != null){
         thumbnailContainer.innerHTML = "";
-        console.log('thumbnail cleared')
+        // console.log('thumbnail cleared')
     } 
     // if there is card content within the cardBlock, clear it
     if (cardBlock != null) {
@@ -273,7 +274,7 @@ const clearContent = () => {
         // document.getElementById('name_container').innerHTML = "";
         // document.getElementById('img_container').innerHTML = "";
         // document.getElementById('text_container').innerHTML = "";
-        console.log('cardBlock cleared');
+        // console.log('cardBlock cleared');
     }
 }
 
@@ -286,7 +287,7 @@ const storeDuplicates = (arr) =>  {
         // Find if the element is already in the result array or not
         if (duplicates.indexOf(element) === -1) {
           duplicates.push(element);
-          console.log('cards pushed to dupes array')
+        //   console.log('cards pushed to dupes array')
         }
       }
     });
@@ -320,7 +321,7 @@ const searchCard = () => {
 
         // Number 13 is the "Enter" key on the keyboard
         if (event.keyCode === 13) {
-            console.log("enter pressed");
+            // console.log("enter pressed");
             // Cancel the default action, if needed
             event.preventDefault();
             // Trigger the button element with a click
