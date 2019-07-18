@@ -32,7 +32,7 @@ body {
     cursor: pointer;
 }
 
-
+/* responsive break point media queries */
 @media only screen and (max-width: 767px) {
     #card_image {
         width: 50%;
