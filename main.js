@@ -1,5 +1,7 @@
+
 'use strict';
 
+$(document).ready(function () {
 // Global variables
 let state;
 let cardName = [];
@@ -7,6 +9,8 @@ let cardID = [];
 let cardList;
 let duplicatePrints;
 let thumbnailIDs = [];
+let currentState = history.state;
+
 
 
 const cardInfoApi = () => {
@@ -45,11 +49,11 @@ const nameIdGeneration = () => {
 
 const removeDuplicates = (arr) =>{
     // removes all multi-printed cards from the array list in preperation for plugging the cardList into the jquery drop down library as data source
-    let finalArray = []
+    let finalArray = [];
     for(let i = 0;i < arr.length; i++){
         // push all non duplicates to finalArray to filter out any duplicate/multi-printed cards 
         if(finalArray.indexOf(arr[i]) == -1){
-            finalArray.push(arr[i])
+            finalArray.push(arr[i]);
         }
         // console.log('stuff added');
     }
@@ -61,13 +65,7 @@ window.onload = function () {
     $("#card_name_input").autocomplete({
         source: function (request, response) {
             let cardNames = $.ui.autocomplete.filter(cardList, request.term);
-            response(cardNames.slice(0, 20));
-        }
-    });
-    $("#search_id").autocomplete({
-        source: function (request, response) {
-            let cardIDs = $.ui.autocomplete.filter(cardID, request.term);
-            response(cardIDs.slice(0, 15));
+            response(cardNames);
         }
     });
 }
@@ -76,8 +74,7 @@ window.onload = function () {
 const generateCardBlock = (cardParams) => {
  
     let infoContainer = document.getElementById('info_container'); //define parent element all generated DOM elements will be apended to
-    let containsText = document.getElementById('card_name_input').value;
-
+    
     // the below if statement is only running if something gets passed to this function
     if (cardParams != "") { 
         if (document.getElementById('cardBlock_container') == null) {
@@ -175,7 +172,7 @@ const generateCardBlock = (cardParams) => {
                       
             for (let i = 0; i < state.length; i++) {
                 // this checks the searched card's params and pipes the appropriate data into the their respective DOM created fields
-                if (cardParams == state[i].name || cardParams == state[i].id) {
+                if (cardParams === state[i].name || cardParams == state[i].id) {
                     let effects = state[i].desc.split('----------------------------------------');
                     // console.log(effects[0]);
                     cardNameContainer.innerHTML += "<h>" + state[i].name + "</h>";
@@ -324,10 +321,11 @@ const searchCard = () => {
                 generateCardBlock(cardNameValue);
             } 
         } else if (cardNameValue == ""){
-            
+            alert("Please enter a card name into the search bar.")
         } else{
             alert("Please use the dropdown menu you to assist you with your search.")
         }
+        
     });
     // Execute a function when the user releases a key on the keyboard
     let nameInput = document.getElementById("card_name_input");
@@ -344,13 +342,18 @@ const searchCard = () => {
         }
     });
 }
-
+function toTitleCase(str) 
+{
+   return str.split(/\s+/).map( s => s.charAt( 0 ).toUpperCase() + s.substring(1).toLowerCase() ).join( " " );
+}
 ////////////////////////// program logic begins here //////////////////////////
+
 cardInfoApi();
-
-$(document).ready(function () {
-
-    searchCard();
+searchCard();
+$('#card_name_input').on('keyup', function(event) {
+    var $t = $(this);
+    $t.val( toTitleCase( $t.val() ) );
+});
 });
 
 
