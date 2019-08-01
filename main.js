@@ -200,8 +200,8 @@ const generateCardBlock = (cardParams) => {
                     cardType.innerHTML += "Card Type: " + state[i].type;
                     monsterType.innerHTML += "Monster Type: " + state[i].race;
                     archetype.innerHTML += "Archetype: " + (state[i].archetype ? state[i].archetype : "N/A");
-                    banTcg.innerHTML += "TCG Ban Status: " + (state[i].ban_tcg ? state[i].ban_tcg : "N/A")
-                    banOcg.innerHTML += "OCG Ban Status: " + (state[i].ban_ocg ? state[i].ban_ocg : "N/A")
+                    banTcg.innerHTML += "TCG Ban Status: " + (state[i].ban_tcg ? state[i].ban_tcg : "Unlimited")
+                    banOcg.innerHTML += "OCG Ban Status: " + (state[i].ban_ocg ? state[i].ban_ocg : "Unlimited")
                     // If the card is a pendulum type, it splits the two effects into two seperate fields, if not - it just places the the card description in the default description element
                     if (effects.length > 1){
                         pendulumEffect.innerHTML += effects[0];
