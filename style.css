@@ -32,10 +32,7 @@ body {
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-=======
 /* responsive break point media queries */
->>>>>>> e49bc1138324d26bd14f1fe18503474f24b6fb04
 @media only screen and (max-width: 767px) {
     #card_image {
         width: 50%;
@@ -199,6 +196,13 @@ h {
 }
 
 @media only screen and (max-width: 471px) {
+    #card_image:active  {
+        -webkit-transform: auto !important;
+        transform: auto !important;
+    }
+    #card_image  {
+        cursor: auto !important; 
+    }
     h {
         font-family: 'Andada', serif;
         font-size: medium;
