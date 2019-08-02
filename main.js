@@ -351,10 +351,14 @@ function toTitleCase(str)
 
 cardInfoApi();
 searchCard();
-
+// ensures all words in search input are capital case to match incoming cards from API 
 $('#card_name_input').on('keyup', function(event) {
     var $t = $(this);
     $t.val( toTitleCase( $t.val() ) );
+});
+// prevents right click menu of image so on mobile if a user clicks to zoom, they don't get forced into default save image menu
+$("#card_image").on("contextmenu",function(e){
+    return false;
 });
 });
 
