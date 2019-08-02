@@ -209,7 +209,10 @@ const generateCardBlock = (cardParams) => {
                     } else if (effects.length == 1){
                         description.innerHTML += "Description: " + effects[0];
                     }
-
+                // prevents right click menu of image so on mobile if a user clicks to zoom, they don't get forced into default save image menu
+                $("#card_image").on("contextmenu",function(e){
+                return false;
+});   
                 }
             }
         }
